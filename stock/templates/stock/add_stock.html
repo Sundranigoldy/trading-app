@@ -1,0 +1,47 @@
+{% extends 'stock/base.html' %}
+
+{% block title%} Homepage{% endblock %}
+
+{% block body %}
+
+<h1 class=" my-2 mx-2"> Add Stock</h1>
+<form action="{%url 'stock:add_stock' %}" method="post">
+    {% csrf_token %}
+    <input class="form-control me-2 mx-2 my-2" type="search" placeholder="Add an company symbol to add on" aria-label="Search Stock"
+        name="search" id="search">
+    <button class="btn btn-outline-success mx-2" type="submit">Add Stock</button>
+</form>
+<table class="table table-bordered border-dark table-hover">
+    <br>
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Company Name</th>
+            <th scope="col">Stock Price (USd)</th>
+            <th scope="col">PreviousClose:</th>
+            <th scope="col">MarketCap</th>
+            <th scope="col">week52High</th>
+            <th scope="col">week52Low</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {%if search %}
+
+        {%for list_item in output %}
+        <tr>
+            <th scope="row">{{list_item.companyName}} </th>
+            <td> {{list_item.latestPrice}} </td>
+            <td>{{list_item.previousClose}}</td>
+            <td>{{list_item.marketCap}}</td>
+            <td>{{list_item.week52High}}</td>
+            <td>{{list_item.week52Low}} </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<br> <br>
+{% for item in search %}
+<a href="{%url 'stock:delete' item.id %}" class="btn btn-primary"> delete {{item }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+{% endfor %}
+{% endblock %}

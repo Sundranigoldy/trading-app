@@ -1,0 +1,44 @@
+{% extends 'stock/base.html' %}
+
+{% block title%} Homepage{% endblock %}
+
+{% block body %}
+
+{%if search %}
+{{ search }}
+{% endif %}
+
+<!-- just to check for an api with name -->
+{%if api %}
+
+{%if api == "Error.." %}
+There is an problem with your ticket symbol, please try again.
+{%else %}
+<table class="table table-bordered border-dark table-hover">
+    <br>
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Company Name</th>
+            <th scope="col">Stock Price (USd)</th>
+            <th scope="col">PreviousClose:</th>
+            <th scope="col">MarketCap</th>
+            <th scope="col">week52High</th>
+            <th scope="col">week52Low</th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+        <th scope="row">{{api.companyName}} </th>
+        <td> {{api.latestPrice}} </td>
+        <td>{{api.previousClose}}</td>
+        <td>{{api.marketCap}}</td>
+        <td>{{api.week52High}}</td>
+        <td>{{api.week52Low}} </td>
+    </tr>
+</tbody>
+</table>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

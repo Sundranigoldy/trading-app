@@ -1,0 +1,16 @@
+{% extends 'stock/base.html' %}
+
+{% block title%} delete stock{% endblock %}
+
+{% block body %}
+<h1> delete stock </h1>
+{%if search %}
+
+{% for item in search %}
+<a href="{%url 'stock:delete' item.id %}" class="btn btn-primary"> delete {{item }}</a> <br>
+{% endfor %}
+
+{% else %}
+<h2> You don't have any stocks</h2>
+{% endif %}
+{% endblock %}
