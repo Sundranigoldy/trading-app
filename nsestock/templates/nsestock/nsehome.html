@@ -1,0 +1,41 @@
+{% extends 'nsestock/base.html' %}
+
+{% block title%} Nse Homepage{% endblock %}
+
+{% block body %}
+
+{%if nsesearch %}
+{{nsesearch}}
+{% endif %}
+    {% if quote %}
+    {%if quote == Error... %}
+    There is an problem with an search please check symbol and try again
+    {% else %}
+    <h2 class="my-5 mx-2"> Welcome to National Stock Exchange, Below is Your search company Data</h2>
+    <table class="table table-bordered border-dark table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Price in (Rs.)</th>
+                <th scope="col">Day High: </th>
+                <th scope="col">Day Low: </th>
+                <th scope="col">High52:</th>
+                <th scope="col">Low52:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{quote.companyName}} </th>
+                <td> {{quote.lastPrice }} </td>
+                <td>{{quote.dayHigh}}</td>
+                <td>{{quote.dayLow}}</td>
+                <td>{{quote.high52 }}</td>
+                <td>{{quote.low52 }} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% endif %}
+    {% endif %}
+
+    {% endblock %}

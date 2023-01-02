@@ -1,0 +1,17 @@
+{% extends 'nsestock/base.html' %}
+
+{% block title%} Nse Delete Stock{% endblock %}
+
+{% block body %}
+
+<h1> Delete Stock </h1>
+
+{%if nsesearch %}
+
+{% for item in nsesearch %}
+<a href="{%url 'nsestock:nsedelete' item.id %}" class="btn btn-primary"> delete {{item }}</a> <br> <br>
+{% endfor %}
+{% else %}
+You dont have stock to delete, please add some to delete
+{% endif %}
+{% endblock %}

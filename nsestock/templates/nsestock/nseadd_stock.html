@@ -1,0 +1,49 @@
+{% extends 'nsestock/base.html' %}
+
+{% block title%} Nse Add Stock{% endblock %}
+
+{% block body %}
+<form action="{% url 'nsestock:nseadd_stock'%}" class="form-inline my-4 mx-3" method="post">
+    {% csrf_token %}
+    <input class="form-control me-2 my-3" type="search" placeholder="Search Nse Stock" aria-label="Add Nse Stock" name="nsesearch"
+      id="nse_searchsearch">
+    <button class="btn btn-outline-success" type="submit">Add Stock</button>
+</form>
+<h1 class="my-5"> Add Stock</h1>
+<h2 class="my-5 mx-2"> Welcome to National Stock Exchange, Below is Personal Stock Data</h2>
+    <table class="table table-bordered border-dark table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Price in (Rs.)</th>
+                <th scope="col">Day High: </th>
+                <th scope="col">Day Low: </th>
+                <th scope="col">High52:</th>
+                <th scope="col">Low52:</th>
+            </tr>
+        </thead>
+        <tbody>
+          {%if nsesearch %}
+           
+              {% for list_item in nseoutput %}
+              <tr>
+                <th scope="row">{{list_item.companyName}} </th>
+                <td> {{list_item.lastPrice }} </td>
+                <td>{{list_item.dayHigh}}</td>
+                <td>{{list_item.dayLow}}</td>
+                <td>{{list_item.high52 }}</td>
+                <td>{{list_item.low52 }} </td>
+               
+              </tr>
+
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    {% endif %}
+<br> <br>
+{% for item in nsesearch %}
+<a href="{%url 'nsestock:nsedelete' item.id %}" class="btn btn-primary"> delete {{item }}</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+{% endfor %}
+
+{% endblock %}

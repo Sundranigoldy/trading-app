@@ -9,8 +9,7 @@
 {% for item in search %}
 <a href="{%url 'stock:delete' item.id %}" class="btn btn-primary"> delete {{item }}</a> <br>
 {% endfor %}
-
 {% else %}
-<h2> You don't have any stocks</h2>
+You dont have stock to delete, please add some to delete
 {% endif %}
 {% endblock %}

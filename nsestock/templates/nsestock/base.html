@@ -22,24 +22,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{%url 'stock:home'%}">Home</a>
+            <a class="nav-link" href="{% url 'nsestock:nsehome'%}">Nse Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{%url 'stock:add_stock' %}">Add Stock</a>
+            <a class="nav-link" href="{%url 'nsestock:nseadd_stock'%}">Add Nse Stock</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{%url 'stock:delete_stock' %}">delete</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/nsestock"> Nse Stock</a>
-          </li>
-
-
+            <a class="nav-link" href="{%url 'nsestock:nsedelete_stock'%}"></a>
         </ul>
-        <form action="/" class="d-flex" method="post">
+        <form action="{% url 'nsestock:nsehome'%}" class="d-flex" method="post">
           {% csrf_token %}
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search Stock" name="search"
-            id="search">
+          <input class="form-control me-2" type="search" placeholder="Search Nse Stock" aria-label="Search Stock" name="nsesearch"
+            id="nsesearchsearch">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
@@ -51,7 +45,7 @@
     {%for message in messages%}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       {{message}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
     </div>
     {% endfor %}
     {% endif %}
